@@ -1,0 +1,66 @@
+
+================================================================================
+
+  (Run Starting)
+
+  ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ Cypress:        13.12.0                                                                        │
+  │ Browser:        Electron 118 (headless)                                                        │
+  │ Node Version:   v20.12.2 (/usr/bin/node-20)                                                    │
+  │ Specs:          1 found (test_01.cy.js)                                                        │
+  │ Searched:       cypress/e2e/*.cy.{js,jsx,ts,tsx}                                               │
+  └────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+                                                                                                    
+  Running:  test_01.cy.js                                                                   (1 of 1)
+
+
+  Training Page Test
+    1) should display the text "Please select a training"
+
+
+  0 passing (4s)
+  1 failing
+
+  1) Training Page Test
+       should display the text "Please select a training":
+     AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Plsease select a training' but never did.
+      at Context.eval (webpack:///./cypress/e2e/test_01.cy.js:5:9)
+
+
+
+
+  (Results)
+
+  ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ Tests:        1                                                                                │
+  │ Passing:      0                                                                                │
+  │ Failing:      1                                                                                │
+  │ Pending:      0                                                                                │
+  │ Skipped:      0                                                                                │
+  │ Screenshots:  1                                                                                │
+  │ Video:        false                                                                            │
+  │ Duration:     4 seconds                                                                        │
+  │ Spec Ran:     test_01.cy.js                                                                    │
+  └────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+
+  (Screenshots)
+
+  -  /home/jkb91/Desktop/REPOS/cypress_tests/cypress/screenshots/test_01.cy.js/Traini     (1280x720)
+     ng Page Test -- should display the text Please select a training (failed).png                  
+
+
+================================================================================
+
+  (Run Finished)
+
+
+       Spec                                              Tests  Passing  Failing  Pending  Skipped  
+  ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ ✖  test_01.cy.js                            00:04        1        -        1        -        - │
+  └────────────────────────────────────────────────────────────────────────────────────────────────┘
+    ✖  1 of 1 failed (100%)                     00:04        1        -        1        -        -  
+
