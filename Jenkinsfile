@@ -6,6 +6,7 @@ pipeline {
                   echo "changeId== ${env.CHANGE_ID}"
               }
           }
+
         
         stage('Pull Request section') {
              when {
