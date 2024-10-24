@@ -12,6 +12,10 @@ pipeline {
                     echo "Branch detected: ${env.GIT_BRANCH}"
                     return env.GIT_BRANCH ==~ /.*feature-.*/
                 }
+             }
+            steps {
+                echo "Building develop branch..."
+            }
         }
         stage('Develop') {
               when {
@@ -33,5 +37,4 @@ pipeline {
             }
         }
     }
-}
 }
