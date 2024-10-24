@@ -3,11 +3,8 @@ pipeline {
     stages {
         stage('SHOW ALL ACCESSIBLE VARIABLES') {
             steps {
-                script {
-                    // Pokaż wszystkie dostępne zmienne środowiskowe
-                    env.each { key, value -> echo "$key = $value" }
-                }
-            }
+                  echo "CHECK VARIABLES"
+              }
           }
         
         stage('Pull Request section') {
