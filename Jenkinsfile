@@ -1,8 +1,7 @@
 pipeline {
-    agent any
-    
+    agent any 
     stages {
-        stage('Build') {
+        stage('Feature') {
             when {
                 branch pattern: "feature-.*", comparator: "REGEXP"
             }
@@ -10,17 +9,21 @@ pipeline {
                 echo "Building feature branch..."
             }
         }
-        stage('Test') {
-            steps {
-                echo "Running tests..."
-                sh 'echo "Run some tests here"'
+        stage('Develop') {
+              when {
+                branch pattern: "develop", comparator: "REGEXP"
+            }
+             steps {
+                echo "Building develop branch..."
             }
         }
 
-        stage('Deploy') {
-            steps {
-                echo "Deploying the project..."
- 
+        stage('Master') {
+              when {
+                branch pattern: "master", comparator: "REGEXP"
+            }
+             steps {
+                echo "Building master branch..."
             }
         }
     }
