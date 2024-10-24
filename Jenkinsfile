@@ -1,32 +1,42 @@
 pipeline {
     agent any 
     stages {
-
-        stage('Informations printer') {
+        stage('COMMON STEPS') {
             steps {
                   echo "Building on branch: ${env.GIT_BRANCH}"
             }
           }
-        stage('Feature') {
-           when {
-                branch pattern: ".*feature-.*", comparator: "REGEXP"
-           }
+        stage('Pull Request section') {
+             when {
+               expression {
+                    return env.CHANGE_ID != null
+                }
+             }
+            steps {
+                  echo "THIS IS PULL REQUEST SECTION"
+          }
+        }
+        stage('RUN ONLY ON Feature BRANCH') {
+          when {
+               expression {
+                    echo "Branch detected: ${env.GIT_BRANCH}"
+                    return env.GIT_BRANCH ==~ /.*feature-.*/
+                }
+             }
             steps {
                 echo "Building feature branch..."
             }
         }
-        stage('Develop') {
+        stage('RUN ONLY ON Develop BRANCH') {
               when {
-                    expression {
-                        return env.GIT_BRANCH == "origin/develop"
-                    }
-              }
+                branch pattern: "develop", comparator: "REGEXP"
+            }
              steps {
                 echo "Building develop branch..."
             }
         }
 
-        stage('Master') {
+        stage('RUN ONLY ON Master BRANCH') {
              when {
                     expression {
                         return env.GIT_BRANCH == "origin/master"
