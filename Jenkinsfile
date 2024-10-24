@@ -1,13 +1,12 @@
 pipeline {
     agent any 
     stages {
-        stage('COMMON STEPS') {
+        stage('SHOW ALL ACCESSIBLE VARIABLES') {
             steps {
-                echo "******************************************************"
-                echo "Building on branch: ${env.GIT_BRANCH}"
-                echo "Building on branch: ${env.CHANGE_ID}"
-                echo "Building on branch: ${env.GITHUB_PR_TARGET_BRANCH}"
-                echo "******************************************************"
+                script {
+                    // Pokaż wszystkie dostępne zmienne środowiskowe
+                    env.each { key, value -> echo "$key = $value" }
+                }
             }
           }
         stage('Pull Request section') {
