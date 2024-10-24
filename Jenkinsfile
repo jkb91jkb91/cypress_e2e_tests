@@ -9,7 +9,7 @@ pipeline {
           }
         stage('Feature') {
             when {
-                branch pattern: "feature-kuba", comparator: "REGEXP"
+                branch pattern: "origin/feature-kuba", comparator: "REGEXP"
             }
             steps {
                 echo "Building feature branch..."
