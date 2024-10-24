@@ -4,7 +4,10 @@ pipeline {
 
 
         stage('echo') {
-            echo "Building on branch: ${env.GIT_BRANCH}"
+            steps {
+                  echo "Building on branch: ${env.GIT_BRANCH}"
+            }
+         
           }
 
 
