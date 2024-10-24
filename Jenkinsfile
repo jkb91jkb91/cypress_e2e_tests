@@ -3,15 +3,16 @@ pipeline {
 
     stages {
         stage('Build') {
+            when {
+                branch pattern: "feature-.*", comparator: "REGEXP"
+            }
             steps {
-                echo "Building the project..."
-                // Komendy builda tutaj, np. uruchomienie testów
+                echo "Building feature branch..."
             }
         }
         stage('Test') {
             steps {
                 echo "Running tests..."
-                // Przykład testów jednostkowych
                 sh 'echo "Run some tests here"'
             }
         }
@@ -19,17 +20,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo "Deploying the project..."
-                // Krok deploymentu
+ 
             }
-        }
-    }
-
-    post {
-        success {
-            githubNotify context: 'CI', status: 'SUCCESS', description: 'Build passed'
-        }
-        failure {
-            githubNotify context: 'CI', status: 'FAILURE', description: 'Build failed'
         }
     }
 }
