@@ -14,7 +14,7 @@ pipeline {
                 }
              }
             steps {
-                echo "Building develop branch..."
+                echo "Building feature branch..."
             }
         }
         stage('Develop') {
