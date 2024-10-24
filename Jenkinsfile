@@ -30,9 +30,11 @@ pipeline {
         }
 
         stage('Master') {
-              when {
-                branch pattern: "master", comparator: "REGEXP"
-            }
+             when {
+                    expression {
+                        return env.GIT_BRANCH == "origin/master"
+                    }
+              }
              steps {
                 echo "Building master branch..."
             }
