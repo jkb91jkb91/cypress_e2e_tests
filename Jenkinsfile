@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('SHOW ALL ACCESSIBLE VARIABLES') {
             steps {
-                  echo "CHECK VARIABLES"
+                  echo "changeId== ${env.CHANGE_ID}"
               }
           }
         
