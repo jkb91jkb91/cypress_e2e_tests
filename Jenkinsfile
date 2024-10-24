@@ -6,6 +6,7 @@ pipeline {
                   echo "CHECK VARIABLES"
               }
           }
+
         
         stage('Pull Request section') {
              when {
