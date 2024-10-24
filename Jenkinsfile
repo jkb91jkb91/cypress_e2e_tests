@@ -8,11 +8,10 @@ pipeline {
           }
         stage('Feature') {
           when {
-                branch pattern: ".*feature-.*", comparator: "REGEXP"
-           }
-            steps {
-                echo "Building feature branch..."
-            }
+               expression {
+                    echo "Branch detected: ${env.GIT_BRANCH}"
+                    return env.GIT_BRANCH ==~ /.*feature-.*/
+                }
         }
         stage('Develop') {
               when {
