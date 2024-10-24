@@ -9,12 +9,7 @@ pipeline {
           }
         stage('Feature') {
            when {
-               not {
-                  anyOf {
-                    branch 'origin/master';
-                    branch 'origin/develop'
-                  }
-               }
+                branch pattern: ".*feature-.*", comparator: "REGEXP"
            }
             steps {
                 echo "Building feature branch..."
