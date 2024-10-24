@@ -6,6 +6,7 @@ pipeline {
                 echo "******************************************************"
                 echo "Building on branch: ${env.GIT_BRANCH}"
                 echo "Building on branch: ${env.CHANGE_ID}"
+                echo "Building on branch: ${env.GITHUB_PR_TARGET_BRANCH}"
                 echo "******************************************************"
             }
           }
