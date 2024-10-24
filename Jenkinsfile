@@ -2,13 +2,14 @@ pipeline {
     agent any
     
     stages {
-        stage('Parallel Execution') {
-            parallel {
                 stage('Build') {
-                    steps {
-                        echo "Building the project..."
-                        // Dodaj kroki związane z buildem
+                     when {
+                branch pattern: "feature/.*", comparator: "REGEXP"
                     }
+                    steps {
+                        echo "Building feature branch..."
+                    }
+           
                 }
                 stage('Test') {
                     steps {
@@ -21,9 +22,6 @@ pipeline {
                         echo "Deploying the project..."
                         // Dodaj kroki związane z wdrażaniem
                     }
-                }
             }
         }
-    }
-    
 }
