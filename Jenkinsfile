@@ -11,8 +11,8 @@ pipeline {
            when {
                not {
                   anyOf {
-                    branch 'master';
-                    branch 'develop'
+                    branch 'origin/master';
+                    branch 'origin/develop'
                   }
                }
            }
