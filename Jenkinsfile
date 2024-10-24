@@ -3,7 +3,10 @@ pipeline {
     stages {
         stage('COMMON STEPS') {
             steps {
-                  echo "Building on branch: ${env.GIT_BRANCH}"
+                echo "******************************************************"
+                echo "Building on branch: ${env.GIT_BRANCH}"
+                echo "Building on branch: ${env.CHANGE_ID}"
+                echo "******************************************************"
             }
           }
         stage('Pull Request section') {
