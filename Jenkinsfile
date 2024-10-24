@@ -1,7 +1,6 @@
 pipeline {
     agent any 
     stages {
-
         stage('Informations printer') {
             steps {
                   echo "Building on branch: ${env.GIT_BRANCH}"
