@@ -2,6 +2,7 @@ pipeline {
     agent any 
     stages {
         stage('Feature') {
+            echo "Building on branch: ${env.GIT_BRANCH}"
             when {
                 branch pattern: "feature-.*", comparator: "REGEXP"
             }
