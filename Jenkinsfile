@@ -1,12 +1,22 @@
 pipeline {
     agent any 
     stages {
-        stage('Informations printer') {
+        stage('COMMON STEPS') {
             steps {
                   echo "Building on branch: ${env.GIT_BRANCH}"
             }
           }
-        stage('Feature') {
+        stage('Pull Request section') {
+             when {
+               expression {
+                    return env.CHANGE_ID != null
+                }
+             }
+            steps {
+                  echo "THIS IS PULL REQUEST SECTION"
+          }
+        }
+        stage('RUN ONLY ON Feature BRANCH') {
           when {
                expression {
                     echo "Branch detected: ${env.GIT_BRANCH}"
@@ -17,7 +27,7 @@ pipeline {
                 echo "Building feature branch..."
             }
         }
-        stage('Develop') {
+        stage('RUN ONLY ON Develop BRANCH') {
               when {
                 branch pattern: "develop", comparator: "REGEXP"
             }
@@ -26,7 +36,7 @@ pipeline {
             }
         }
 
-        stage('Master') {
+        stage('RUN ONLY ON Master BRANCH') {
              when {
                     expression {
                         return env.GIT_BRANCH == "origin/master"
