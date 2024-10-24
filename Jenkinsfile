@@ -8,9 +8,14 @@ pipeline {
             }
           }
         stage('Feature') {
-            when {
-                branch pattern: "origin/feature-kuba", comparator: "REGEXP"
-            }
+           when {
+               not {
+                  anyOf {
+                    branch 'master';
+                    branch 'develop'
+                  }
+               }
+           }
             steps {
                 echo "Building feature branch..."
             }
