@@ -8,7 +8,6 @@ pipeline {
                 // Komendy builda tutaj, np. uruchomienie testów
             }
         }
-
         stage('Test') {
             steps {
                 echo "Running tests..."
