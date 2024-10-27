@@ -7,18 +7,6 @@ pipeline {
               }
           }
 
-        
-        
-        stage('Pull Request section') {
-             when {
-               expression {
-                    return env.CHANGE_ID != null
-                }
-             }
-            steps {
-                  echo "THIS IS PULL REQUEST SECTION"
-          }
-        }
         stage('RUN ONLY ON Feature BRANCH') {
           when {
                expression {
