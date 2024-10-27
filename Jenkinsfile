@@ -3,10 +3,7 @@ pipeline {
     stages {
         stage('COMMON STEPS') {
             steps {
-                 script {
-                    currentBuild.result = 'SUCCESS'
-                    githubNotify()
-                }
+                 error("Wymuszone zakończenie z błędem!")
                 
             }
           }
