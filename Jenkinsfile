@@ -16,6 +16,8 @@ pipeline {
                   echo "THIS IS PULL REQUEST SECTION"
           }
         }
+
+        
            stage('Manual Approval') {
             steps {
                 script {
