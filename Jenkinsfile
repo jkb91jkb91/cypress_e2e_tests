@@ -1,12 +1,41 @@
 pipeline {
     agent any 
     stages {
-        stage('SHOW ALL ACCESSIBLE VARIABLES') {
+        stage('COMMON STEPS') {
             steps {
-                  echo "changeId== ${env.CHANGE_ID}"
-              }
+                  echo "Building on branch: ${env.GIT_BRANCH}"
+            }
           }
+        stage('Pull Request section') {
+             when {
+               expression {
+                    return env.CHANGE_ID != null
+                }
+             }
+            steps {
+                  echo "THIS IS PULL REQUEST SECTION"
+          }
+        }
 
+        
+           stage('Manual Approval') {
+            steps {
+                script {
+                    // Krok manualny
+                    def userInput = input(
+                        id: 'manualApproval', 
+                        message: 'Czy chcesz kontynuować z wdrożeniem?', 
+                        parameters: [
+                            [$class: 'BooleanParameterDefinition', 
+                             name: 'Proceed?', 
+                             defaultValue: true, 
+                             description: 'Kliknij, aby kontynuować.']
+                        ]
+                    )
+                    echo "User selected: ${userInput}"
+                }
+            }
+        }
         stage('RUN ONLY ON Feature BRANCH') {
           when {
                expression {
@@ -16,17 +45,6 @@ pipeline {
              }
             steps {
                 echo "Building feature branch..."
-            }
-        }
-         stage('RUN ONLY ON PULL REQUEST') {
-          when {
-               expression {
-                    echo "Branch detected: ${env.GIT_BRANCH}"
-                    env.GIT_BRANCH ==~ /refs\/pull\/\d+\/merge/
-                }
-             }
-            steps {
-                echo "PULL REQUEST."
             }
         }
         stage('RUN ONLY ON Develop BRANCH') {
