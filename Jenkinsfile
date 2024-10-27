@@ -7,7 +7,6 @@ pipeline {
               }
           }
 
-        
         stage('Pull Request section') {
              when {
                expression {
