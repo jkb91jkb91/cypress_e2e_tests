@@ -3,7 +3,8 @@ pipeline {
     stages {
         stage('COMMON STEPS') {
             steps {
-                  echo "Building on branch: ${env.GIT_BRANCH}"
+                currentBuild.result = 'SUCCESS'
+                githubNotify()
             }
           }
         stage('Pull Request section') {
@@ -67,4 +68,30 @@ pipeline {
             }
         }
     }
+}
+
+def githubNotify() {
+    // Wtyczka GitHub API powinna być włączona
+    def message = currentBuild.result == 'SUCCESS' ? 'Build was successful' : 'Build failed'
+    def context = 'CI' // Ustaw kontekst, na przykład 'CI'
+    
+    // Użyj API GitHub do aktualizacji statusu
+    def token = credentials('cypres-token') // Użyj ID swojego sekretu
+    def repo = 'jkb91jkb91/cypress_e2e_tests' // Użyj pełnej ścieżki do swojego repozytorium
+    def sha = env.GIT_COMMIT // Użyj sha commit
+    def url = "https://api.github.com/repos/${repo}/statuses/${sha}"
+
+    // Użyj funkcji do wykonania żądania HTTP
+    def response = httpRequest(
+        url: url,
+        httpMode: 'POST',
+        contentType: 'APPLICATION_JSON',
+        requestBody: """{
+            "state": "${currentBuild.result == 'SUCCESS' ? 'success' : 'failure'}",
+            "description": "${message}",
+            "context": "${context}"
+        }""",
+        customHeaders: [[name: 'Authorization', value: "token ${token}"]]
+    )
+    echo "GitHub status updated: ${response.status}"
 }
