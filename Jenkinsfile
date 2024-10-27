@@ -16,6 +16,24 @@ pipeline {
                   echo "THIS IS PULL REQUEST SECTION"
           }
         }
+           stage('Manual Approval') {
+            steps {
+                script {
+                    // Krok manualny
+                    def userInput = input(
+                        id: 'manualApproval', 
+                        message: 'Czy chcesz kontynuować z wdrożeniem?', 
+                        parameters: [
+                            [$class: 'BooleanParameterDefinition', 
+                             name: 'Proceed?', 
+                             defaultValue: true, 
+                             description: 'Kliknij, aby kontynuować.']
+                        ]
+                    )
+                    echo "User selected: ${userInput}"
+                }
+            }
+        }
         stage('RUN ONLY ON Feature BRANCH') {
           when {
                expression {
