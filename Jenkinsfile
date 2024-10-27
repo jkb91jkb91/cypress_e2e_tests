@@ -7,9 +7,6 @@ pipeline {
               }
           }
 
-
-
-
         
         
         stage('Pull Request section') {
