@@ -29,6 +29,17 @@ pipeline {
                 echo "Building feature branch..."
             }
         }
+         stage('RUN ONLY ON PULL REQUEST') {
+          when {
+               expression {
+                    echo "Branch detected: ${env.GIT_BRANCH}"
+                    env.GIT_BRANCH ==~ /refs\/pull\/\d+\/merge/
+                }
+             }
+            steps {
+                echo "PULL REQUEST."
+            }
+        }
         stage('RUN ONLY ON Develop BRANCH') {
               when {
                 branch pattern: "develop", comparator: "REGEXP"
