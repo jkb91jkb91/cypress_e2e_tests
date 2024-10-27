@@ -3,8 +3,11 @@ pipeline {
     stages {
         stage('COMMON STEPS') {
             steps {
-                currentBuild.result = 'SUCCESS'
-                githubNotify()
+                 script {
+                    currentBuild.result = 'SUCCESS'
+                    githubNotify()
+                }
+                
             }
           }
         stage('Pull Request section') {
